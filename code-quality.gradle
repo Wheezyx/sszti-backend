@@ -1,0 +1,13 @@
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+
+checkstyle {
+    configFile = file("./config/checkstyle.xml")
+    toolVersion = "8.25"
+    ignoreFailures = false
+}
+
+pmd {
+    ignoreFailures = false
+    ruleSetFiles = files("./config/pmd-all-java.xml")
+}
