@@ -1,5 +1,6 @@
 package pl.wedel.szzti.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -18,12 +20,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final UserDetailsService userDetailsService;
+  private final ObjectMapper objectMapper;
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.cors().and().httpBasic().and().csrf().disable().authorizeRequests()
-        .anyRequest().permitAll()
+    http.cors().and().csrf().disable().headers().frameOptions().disable()
         .and()
+        .authorizeRequests().anyRequest().permitAll()
+        .and()
+        .addFilter(new JwtAuthenticationFilter(authenticationManager(), objectMapper))
+        .addFilter(new JwtAuthorizationFilter(authenticationManager()))
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }
 
@@ -39,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   @Bean
-  public BCryptPasswordEncoder bCryptPasswordEncoder() {
+  public PasswordEncoder bCryptPasswordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
