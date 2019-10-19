@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build -t szzti/backend .
+docker build -t wheeezyx/szzti-backend .

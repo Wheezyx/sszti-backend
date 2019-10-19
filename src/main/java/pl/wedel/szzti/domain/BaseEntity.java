@@ -5,11 +5,15 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 @MappedSuperclass
+@EqualsAndHashCode
+@ToString
 public abstract class BaseEntity {
 
   @Id

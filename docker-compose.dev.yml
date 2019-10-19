@@ -10,7 +10,7 @@ services:
       - szzti-db:/var/lib/postgresql/data
 
   backend:
-    image: szzti/backend
+    image: wheeezyx/szzti-backend
     env_file: .env
     ports:
       - "8080:8080"
