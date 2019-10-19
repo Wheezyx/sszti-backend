@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "item")
+@Table(name = "items")
 public class Item extends BaseEntity {
 
   private String placeOfPosting;
@@ -47,4 +47,6 @@ public class Item extends BaseEntity {
 
   @OneToMany(mappedBy = "item")
   private Set<PlaceItem> placeItems;
+
+  private String description;
 }

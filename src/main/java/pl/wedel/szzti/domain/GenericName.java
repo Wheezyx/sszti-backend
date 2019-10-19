@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "item_type")
+@Table(name = "generic_names")
 public class GenericName extends BaseEntity {
 
   private String name;

@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "place_item")
+@Table(name = "place_items")
 @Getter
 @Setter
 @IdClass(ItemPlaceId.class)

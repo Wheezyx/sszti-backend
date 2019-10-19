@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "place")
+@Table(name = "renters")
 public class Renter extends BaseEntity {
 
   private String name;
