@@ -8,6 +8,7 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -15,11 +16,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 @Table(name = "places")
 public class Place extends BaseEntity {
 
   private String name;
 
-  @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
-  private Set<PlaceItem> placeItems;
+  @OneToMany(mappedBy = "place",
+      cascade = CascadeType.ALL,
+      orphanRemoval = true)
+  private Set<Rental> itemRentals;
 }

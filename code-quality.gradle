@@ -10,4 +10,5 @@ checkstyle {
 pmd {
     ignoreFailures = false
     ruleSetFiles = files("./config/pmd-all-java.xml")
+    ruleSets = []
 }

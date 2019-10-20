@@ -1,6 +1,10 @@
 package pl.wedel.szzti.security.settings;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 //TODO Export those variables into application properties and .env file
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class SecurityConstants {
 
   public static final String JWT_SECRET =

@@ -16,7 +16,7 @@ import pl.wedel.szzti.repository.UserRepository;
 public class JpaUserDetailsServiceTest {
 
   @Mock
-  UserRepository userRepository;
+  private UserRepository userRepository;
 
   private JpaUserDetailsService userDetailsService;
 

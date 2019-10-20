@@ -1,10 +1,14 @@
 package pl.wedel.szzti.domain;
 
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -13,9 +17,14 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "renters")
+@NoArgsConstructor
 public class Renter extends BaseEntity {
 
   private String name;
   private String surname;
 
+  @OneToMany(mappedBy = "renter",
+      cascade = CascadeType.ALL,
+      orphanRemoval = true)
+  private Set<Rental> itemRentals;
 }

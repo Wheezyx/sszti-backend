@@ -23,6 +23,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 @AllArgsConstructor
 public class User extends BaseEntity implements UserDetails {
 
+  private static final long serialVersionUID = 42L;
+
   private String username;
   private String password;
   private boolean accountNonExpired;
@@ -31,6 +33,6 @@ public class User extends BaseEntity implements UserDetails {
   private boolean enabled;
 
   @ManyToMany(fetch = FetchType.EAGER)
-  private Set<Authority> authorities;
+  private Set<UserAuthority> authorities;
 
 }

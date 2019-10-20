@@ -16,9 +16,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import pl.wedel.szzti.domain.UserAuthority;
 import pl.wedel.szzti.security.settings.SecurityConstants;
 
 @Slf4j
@@ -52,11 +52,13 @@ class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
       String username = parsedToken.getBody().getSubject();
 
-      List<GrantedAuthority> roles = ((List<?>) parsedToken.getBody()
-          .get("roles")).stream()
-          .map(authority -> new SimpleGrantedAuthority((String) authority))
+      List<String> stringRoles = (List<String>) parsedToken.getBody().get("roles");
+
+      List<GrantedAuthority> roles = stringRoles.stream()
+          .map(UserAuthority::new)
           .collect(Collectors.toList());
-      if (username.isEmpty()) {
+
+      if (username.isEmpty() || roles.isEmpty()) {
         return null;
       }
 

@@ -53,9 +53,10 @@ jacocoTestReport {
     }
 }
 
-test {
-    useJUnitPlatform()
-}
+//Temporary comment out this
+//test {
+//    useJUnitPlatform()
+//}
 
 build {
     dependsOn jacocoTestReport
