@@ -50,7 +50,8 @@ public class Item extends BaseEntity {
 
   @OneToMany(mappedBy = "item",
       cascade = CascadeType.ALL,
-      orphanRemoval = true)
+      orphanRemoval = true,
+      fetch = FetchType.LAZY)
   private Set<Rental> itemRentals;
 
   private String description;

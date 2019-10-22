@@ -1,6 +1,6 @@
 package pl.wedel.szzti.domain;
 
-enum ItemType {
+public enum ItemType {
   EQUIPMENT, FURNITURE, TOOLS, SOFTWARE, OFFICE;
 
 

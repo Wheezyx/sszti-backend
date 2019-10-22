@@ -1,6 +1,5 @@
 package pl.wedel.szzti.domain;
 
-
 import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
