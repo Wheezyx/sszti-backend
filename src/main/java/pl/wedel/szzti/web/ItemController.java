@@ -1,10 +1,14 @@
 package pl.wedel.szzti.web;
 
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +29,22 @@ public class ItemController {
     return itemService.findAll(pageable).map(this::toDto);
   }
 
+  @GetMapping(value = "/{id}")
+  @ResponseStatus(HttpStatus.OK)
+  public ItemDto getIem(@PathVariable("id") UUID itemId) {
+    Item item = itemService.findById(itemId);
+    return toDto(item);
+  }
+
+  @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public ItemDto saveItem(@RequestBody ItemDto itemDto) {
+    //TODO ADD DTO validation
+    Item item = fromDto(itemDto);
+    return toDto(itemService.save(item));
+  }
+
+  //TODO Export methods to dedicated class - mapper
   private ItemDto toDto(Item item) {
     ItemDto itemDto = ItemDto.builder()
         .placeOfPosting(item.getPlaceOfPosting())
@@ -34,10 +54,24 @@ public class ItemController {
         .itemType(item.getItemType())
         .fullItemName(item.getFullItemName())
         .description(item.getDescription())
-        .genericName(item.getGenericName().getName())
+        .genericName(item.getGenericName() != null ? item.getGenericName().getName() : null)
         .dateOfDelivery(item.getDateOfDelivery())
         .build();
     itemDto.setId(item.getId());
     return itemDto;
+  }
+
+  private Item fromDto(ItemDto itemDto) {
+    return Item.builder()
+        .placeOfPosting(itemDto.getPlaceOfPosting())
+        .insideType(itemDto.getInsideType())
+        .equipment(itemDto.isEquipment())
+        .inventoryCode(itemDto.getInventoryCode())
+        .itemType(itemDto.getItemType())
+        .fullItemName(itemDto.getFullItemName())
+        .description(itemDto.getDescription())
+        //TODO ADD GENERIC NAME FINDING BY NAME AND ADDING HERE.
+        .dateOfDelivery(itemDto.getDateOfDelivery())
+        .build();
   }
 }
