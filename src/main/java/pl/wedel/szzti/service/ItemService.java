@@ -34,4 +34,8 @@ public class ItemService {
     return itemRepository.save(item);
   }
 
+  public Item update(Item item) {
+    return itemRepository.save(item);
+  }
+
 }

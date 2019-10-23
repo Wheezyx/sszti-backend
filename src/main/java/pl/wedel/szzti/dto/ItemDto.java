@@ -13,8 +13,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.wedel.szzti.domain.InsideType;
-import pl.wedel.szzti.domain.ItemType;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,13 +24,13 @@ public class ItemDto extends BaseDto {
 
   private String placeOfPosting;
 
-  private InsideType insideType;
+  private String insideType;
 
   private boolean equipment;
 
   private String inventoryCode;
 
-  private ItemType itemType;
+  private String itemType;
 
   private String genericName;
 
