@@ -22,6 +22,7 @@ public class Renter extends BaseEntity {
 
   private String name;
   private String surname;
+  private String code;
 
   @OneToMany(mappedBy = "renter",
       cascade = CascadeType.ALL,

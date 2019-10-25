@@ -1,4 +1,4 @@
-package validation;
+package pl.wedel.szzti.validation;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -10,18 +10,17 @@ import pl.wedel.szzti.domain.InsideType;
 import pl.wedel.szzti.domain.ItemType;
 import pl.wedel.szzti.dto.ItemDto;
 import pl.wedel.szzti.exception.ValidationException;
-import pl.wedel.szzti.validation.ItemDtoValidation;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ItemDtoValidationTest {
+public class ItemDtoValidatorTest {
 
-  private ItemDtoValidation itemDtoValidation;
+  private ItemDtoValidator itemDtoValidator;
 
   private ItemDto itemDto;
 
   @Before
   public void setUp() throws Exception {
-    itemDtoValidation = new ItemDtoValidation();
+    itemDtoValidator = new ItemDtoValidator();
 
     itemDto = ItemDto.builder()
         .dateOfDelivery(LocalDate.now())
@@ -41,7 +40,7 @@ public class ItemDtoValidationTest {
     itemDto.setId(itemId);
 
     //when
-    itemDtoValidation.validateItem(itemId, itemDto);
+    itemDtoValidator.validateItem(itemId, itemDto);
 
     //then
   }
@@ -52,7 +51,7 @@ public class ItemDtoValidationTest {
     itemDto.setId(UUID.randomUUID());
 
     //when
-    itemDtoValidation.validateItem(UUID.randomUUID(), itemDto);
+    itemDtoValidator.validateItem(UUID.randomUUID(), itemDto);
 
     //then
   }
@@ -66,7 +65,7 @@ public class ItemDtoValidationTest {
     itemDto.setInsideType("TEST");
 
     //when
-    itemDtoValidation.validateItem(itemId, itemDto);
+    itemDtoValidator.validateItem(itemId, itemDto);
 
     //then
   }
@@ -78,7 +77,7 @@ public class ItemDtoValidationTest {
     itemDto.setId(UUID.randomUUID());
     itemDto.setItemType("TEST");
     //when
-    itemDtoValidation.validateItem(UUID.randomUUID(), itemDto);
+    itemDtoValidator.validateItem(UUID.randomUUID(), itemDto);
 
     //then
   }

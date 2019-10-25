@@ -10,7 +10,7 @@ import pl.wedel.szzti.dto.ItemDto;
 import pl.wedel.szzti.exception.ValidationException;
 
 @Service
-public class ItemDtoValidation {
+public class ItemDtoValidator {
 
   public void validateItem(UUID itemId, ItemDto itemDto) {
     if (!itemId.equals(itemDto.getId())) {

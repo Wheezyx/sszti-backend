@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import pl.wedel.szzti.domain.InsideType;
 import pl.wedel.szzti.domain.Item;
-import pl.wedel.szzti.domain.ItemType;
 import pl.wedel.szzti.dto.ItemDto;
+import pl.wedel.szzti.mapper.ItemMapper;
 import pl.wedel.szzti.service.ItemService;
-import pl.wedel.szzti.validation.ItemDtoValidation;
+import pl.wedel.szzti.validation.ItemDtoValidator;
 
 @RestController
 @AllArgsConstructor
@@ -27,65 +26,36 @@ public class ItemController {
 
   private final ItemService itemService;
 
-  private final ItemDtoValidation itemDtoValidation;
+  private final ItemDtoValidator itemDtoValidator;
+
+  private final ItemMapper itemMapper;
 
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
   public Page<ItemDto> getItems(Pageable pageable) {
-    return itemService.findAll(pageable).map(this::toDto);
+    return itemService.findAll(pageable).map(itemMapper::toDto);
   }
 
   @GetMapping(value = "/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public ItemDto getIem(@PathVariable("id") UUID itemId) {
+  public ItemDto getItem(@PathVariable("id") UUID itemId) {
     Item item = itemService.findById(itemId);
-    return toDto(item);
+    return itemMapper.toDto(item);
   }
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public ItemDto saveItem(@RequestBody ItemDto itemDto) {
-    //TODO ADD DTO validation
-    Item item = fromDto(itemDto);
-    return toDto(itemService.save(item));
+    //TODO ADD DTO pl.wedel.szzti.validation
+    Item item = itemMapper.fromDto(itemDto);
+    return itemMapper.toDto(itemService.save(item));
   }
 
   @PutMapping(value = "/{id}")
   @ResponseStatus(HttpStatus.OK)
   public ItemDto updateItem(@PathVariable("id") UUID itemId, @RequestBody ItemDto itemDto) {
-    itemDtoValidation.validateItem(itemId, itemDto);
-    Item item = fromDto(itemDto);
-    return toDto(itemService.update(item));
-  }
-
-  //TODO Export methods to dedicated class - mapper
-  private ItemDto toDto(Item item) {
-    ItemDto itemDto = ItemDto.builder()
-        .placeOfPosting(item.getPlaceOfPosting())
-        .insideType(item.getInsideType().name())
-        .equipment(item.isEquipment())
-        .inventoryCode(item.getInventoryCode())
-        .itemType(item.getItemType().name())
-        .fullItemName(item.getFullItemName())
-        .description(item.getDescription())
-        .genericName(item.getGenericName() != null ? item.getGenericName().getName() : null)
-        .dateOfDelivery(item.getDateOfDelivery())
-        .build();
-    itemDto.setId(item.getId());
-    return itemDto;
-  }
-
-  private Item fromDto(ItemDto itemDto) {
-    return Item.builder()
-        .placeOfPosting(itemDto.getPlaceOfPosting())
-        .insideType(InsideType.fromString(itemDto.getInsideType()))
-        .equipment(itemDto.isEquipment())
-        .inventoryCode(itemDto.getInventoryCode())
-        .itemType(ItemType.fromString(itemDto.getItemType()))
-        .fullItemName(itemDto.getFullItemName())
-        .description(itemDto.getDescription())
-        //TODO ADD GENERIC NAME FINDING BY NAME AND ADDING HERE.
-        .dateOfDelivery(itemDto.getDateOfDelivery())
-        .build();
+    itemDtoValidator.validateItem(itemId, itemDto);
+    Item item = itemMapper.fromDto(itemDto);
+    return itemMapper.toDto(itemService.update(item));
   }
 }
