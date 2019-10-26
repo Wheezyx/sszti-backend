@@ -1,5 +1,6 @@
 package pl.wedel.szzti.dto;
 
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -13,9 +14,15 @@ import lombok.Setter;
 @Setter
 @Builder
 @NoArgsConstructor
-public class RenterDto extends BaseDto {
+public class RentalDto extends BaseDto {
 
-  private String name;
-  private String surname;
-  private String code;
+  private ItemDto item;
+
+  private PlaceDto place;
+
+  private RenterDto renter;
+
+  private LocalDate start;
+
+  private LocalDate end;
 }

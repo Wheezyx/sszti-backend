@@ -14,7 +14,6 @@ public class RenterMapper {
         .code(renter.getCode())
         .name(renter.getName())
         .surname(renter.getSurname())
-        //TODO Add item rentals
         .build();
     renterDto.setId(renter.getId());
     return renterDto;

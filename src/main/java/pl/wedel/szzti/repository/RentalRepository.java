@@ -4,6 +4,7 @@ import java.util.UUID;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import pl.wedel.szzti.domain.Rental;
 
-public interface RentalRepository extends PagingAndSortingRepository<Rental, UUID> {
+public interface RentalRepository extends PagingAndSortingRepository<Rental, UUID>,
+    SearchRentalRepository {
 
 }
