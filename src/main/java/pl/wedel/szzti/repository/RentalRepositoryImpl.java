@@ -2,22 +2,22 @@ package pl.wedel.szzti.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.support.PageableExecutionUtils;
 import pl.wedel.szzti.domain.Rental;
 import pl.wedel.szzti.web.RentalSearchParameters;
 
+@Slf4j
 public class RentalRepositoryImpl implements SearchRentalRepository {
 
-  private static final String ID = "id";
   private static final String ITEM_ID = "itemId";
   private static final String PLACE_ID = "placeId";
   private static final String RENTER_ID = "renterId";
@@ -28,30 +28,52 @@ public class RentalRepositoryImpl implements SearchRentalRepository {
 
   @Override
   public Page<Rental> search(RentalSearchParameters searchParameters, Pageable pageable) {
-    CriteriaBuilder qb = entityManager.getCriteriaBuilder();
-    CriteriaQuery<Rental> cq = qb.createQuery(Rental.class);
-    List<Predicate> wheres = new ArrayList<>();
+    log.debug("Starting builder query");
+    CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<Rental> query = builder.createQuery(Rental.class);
+    Root<Rental> root = query.from(Rental.class);
+    query.select(root);
+    List<Predicate> whereas = new ArrayList<>();
 
-    if (searchParameters.containsKey(ID)) {
-      wheres.add(setQueryParameter())
+    if (searchParameters.containsKey(ITEM_ID)) {
+      log.debug("Added where with item id: {}", searchParameters.getItemId());
+      whereas.add(
+          builder.and(builder.equal(root.join("item").get("id"),
+              searchParameters.getItemId())));
     }
 
-    Root<Rental> root = cq.from(Rental.class);
-    cq.where(qb.and(
-        qb.equal(root.get(ID), qb.parameter(UUID.class, ID)),
-        qb.equal(root.get(ITEM_ID), qb.parameter(Integer.class, ITEM_ID)),
-        qb.equal(root.get(PLACE_ID), qb.parameter(Integer.class, PLACE_ID)),
-        qb.equal(root.get(RENTER_ID), qb.parameter(Integer.class, RENTER_ID))
-    ));
-    Query query = entityManager.createQuery(cq);
+    if (searchParameters.containsKey(RENTER_ID)) {
+      log.debug("Added where with renter id: {}", searchParameters.getRenterId());
+      whereas.add(
+          builder.and(builder.equal(root.join("renter").get("id"),
+              searchParameters.getItemId())));
+    }
 
-    //ADD IFS/ PREDICATES BASED
+    if (searchParameters.containsKey(PLACE_ID)) {
+      log.debug("Added where with place id: {}", searchParameters.getPlaceId());
+      whereas.add(
+          builder.and(builder.equal(root.join("place").get("id"),
+              searchParameters.getItemId())));
+    }
 
+    Predicate[] whereasArray = new Predicate[whereas.size()];
+    whereas.toArray(whereasArray);
+    query.where(whereasArray);
+    List<Rental> list = entityManager.createQuery(query).getResultList();
+    return PageableExecutionUtils.getPage(list, pageable, this::getCountForRentals);
   }
 
-  private Predicate setQueryParameter(CriteriaBuilder qb, Root root,
-      RentalSearchParameters searchParameters, String param) {
-    if (searchParameters.containsKey(param)){
-    return qb.equal(root.get(param), qb.parameter(UUID.class, param);
+  private Long getCountForRentals() {
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+
+    CriteriaQuery<Long> countQuery = criteriaBuilder
+        .createQuery(Long.class);
+    countQuery.select(criteriaBuilder.count(
+        countQuery.from(Rental.class)));
+    Long count = entityManager.createQuery(countQuery)
+        .getSingleResult();
+
+    return count;
   }
+
 }

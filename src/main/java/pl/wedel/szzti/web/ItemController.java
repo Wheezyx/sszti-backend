@@ -46,7 +46,7 @@ public class ItemController {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public ItemDto saveItem(@RequestBody ItemDto itemDto) {
-    //TODO ADD DTO pl.wedel.szzti.validation
+    itemDtoValidator.validateItem(itemDto);
     Item item = itemMapper.fromDto(itemDto);
     return itemMapper.toDto(itemService.save(item));
   }
