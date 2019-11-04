@@ -25,17 +25,20 @@ public class RentalMapper {
     final Item item = itemService.findById(rentalDto.getItem().getId());
     final Renter renter = renterService.findById(rentalDto.getRenter().getId());
 
-    rental.setStart(rentalDto.getStart() == null ? LocalDate.now() : rentalDto.getStart());
-    rental.setEnd(rentalDto.getEnd());
+    rental.setStartDate(rentalDto.getStart() == null ? LocalDate.now() : rentalDto.getStart());
+    rental.setEndDate(rentalDto.getEnd());
     rental.setItem(item);
     rental.setRenter(renter);
     return rental;
   }
 
   public RentalDto toDto(Rental rental) {
+    if (null == rental) {
+      return null;
+    }
     RentalDto rentalDto = new RentalDto();
-    rentalDto.setEnd(rental.getStart());
-    rentalDto.setEnd(rental.getStart());
+    rentalDto.setStart(rental.getStartDate());
+    rentalDto.setEnd(rental.getEndDate());
     rentalDto.setItem(itemMapper.toDto(rental.getItem()));
     rentalDto.setRenter(renterMapper.toDto(rental.getRenter()));
     rentalDto.setId(rental.getId());

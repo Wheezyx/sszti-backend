@@ -12,6 +12,9 @@ import pl.wedel.szzti.dto.ItemDto;
 public class ItemMapper {
 
   public ItemDto toDto(Item item) {
+    if (null == item) {
+      return null;
+    }
     ItemDto itemDto = ItemDto.builder()
         .placeOfPosting(item.getPlaceOfPosting())
         .insideType(item.getInsideType() != null ? item.getInsideType().name() : null)

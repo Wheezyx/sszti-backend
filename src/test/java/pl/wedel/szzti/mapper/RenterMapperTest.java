@@ -25,8 +25,8 @@ public class RenterMapperTest {
     UUID id = UUID.randomUUID();
     Renter renter = new Renter();
     renter.setCode(code);
-    renter.setName(name);
-    renter.setSurname(surname);
+    renter.setFirstName(name);
+    renter.setLastName(surname);
     renter.setId(id);
 
     RenterDto renterDto = renterMapper.toDto(renter);

@@ -10,10 +10,14 @@ import pl.wedel.szzti.dto.RenterDto;
 public class RenterMapper {
 
   public RenterDto toDto(Renter renter) {
+    if (null == renter) {
+      return null;
+    }
+
     RenterDto renterDto = RenterDto.builder()
         .code(renter.getCode())
-        .name(renter.getName())
-        .surname(renter.getSurname())
+        .name(renter.getFirstName())
+        .surname(renter.getLastName())
         .build();
     renterDto.setId(renter.getId());
     return renterDto;

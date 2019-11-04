@@ -1,0 +1,4 @@
+id, item_id, place_id, renter_id, start_date, end_date
+'77f17b07-d598-41cc-8a8b-3b7b8ac5cc1d','fffa0207-abfe-4289-8f5e-5462d18cce43', 'd4a20291-f7a1-468a-99f6-39e7d35b5bfc', null, null, null
+'58489c20-4219-482c-b561-a7fd7d97c59a', '11dae30a-e24a-4646-8700-0c03d9c62d86', null, '0bb60e7f-d3d8-431c-8278-55d233fb656e', null, null
+'a33b08ca-c46a-461e-993e-78aa4f506850', '329c3b70-a21b-40ad-88dd-5467e57348b4', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null

@@ -1,6 +1,6 @@
 package pl.wedel.szzti.web;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class RentalController {
 
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
-  public Page<RentalDto> searchRentals(@RequestParam HashMap<String, Object> params,
+  public Page<RentalDto> searchRentals(@RequestParam Map<String, Object> params,
       Pageable pageable) {
     log.debug(params.toString());
 

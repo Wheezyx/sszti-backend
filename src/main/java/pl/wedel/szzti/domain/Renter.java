@@ -20,8 +20,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Renter extends BaseEntity {
 
-  private String name;
-  private String surname;
+  private String firstName;
+  private String lastName;
   private String code;
 
   @OneToMany(mappedBy = "renter",
