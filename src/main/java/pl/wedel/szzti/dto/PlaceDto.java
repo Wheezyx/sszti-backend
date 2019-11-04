@@ -1,6 +1,5 @@
 package pl.wedel.szzti.dto;
 
-import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -17,5 +16,4 @@ import lombok.Setter;
 public class PlaceDto extends BaseDto {
 
   private String name;
-  private Set<RentalDto> itemRentals;
 }

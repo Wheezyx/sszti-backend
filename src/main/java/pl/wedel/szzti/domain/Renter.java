@@ -2,6 +2,7 @@ package pl.wedel.szzti.domain;
 
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,6 +23,7 @@ public class Renter extends BaseEntity {
 
   private String firstName;
   private String lastName;
+  @Column(nullable = false, unique = true)
   private String code;
 
   @OneToMany(mappedBy = "renter",

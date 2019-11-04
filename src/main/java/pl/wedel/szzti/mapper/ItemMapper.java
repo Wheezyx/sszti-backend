@@ -1,6 +1,5 @@
 package pl.wedel.szzti.mapper;
 
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.wedel.szzti.domain.InsideType;
 import pl.wedel.szzti.domain.Item;
@@ -8,7 +7,6 @@ import pl.wedel.szzti.domain.ItemType;
 import pl.wedel.szzti.dto.ItemDto;
 
 @Service
-@AllArgsConstructor
 public class ItemMapper {
 
   public ItemDto toDto(Item item) {
