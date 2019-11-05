@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,10 +19,11 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@Table(name = "places")
+@Table(name = "places", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"name"}, name = "place_name_idx")})
 public class Place extends BaseEntity {
 
-  @Column(unique = true, nullable = false)
+  @Column(nullable = false)
   private String name;
 
   @OneToMany(mappedBy = "place",
