@@ -1,0 +1,3 @@
+id, username, password, account_non_expired, account_non_locked, credentials_non_expired, enabled
+'20e2cd30-b4bd-4472-9fdd-0b4cc3a427d3', 'admin', '$2a$10$avDcHXXCv9f.t6mpBtbxje3RfiW1in3yqOnDdlIA9ZhVdGBMWgbxK', true, true, true, true
+'8dda4a39-4f26-4796-86b7-833df5b56938', 'user', '$2a$10$avDcHXXCv9f.t6mpBtbxje3RfiW1in3yqOnDdlIA9ZhVdGBMWgbxK', true, true, true, true

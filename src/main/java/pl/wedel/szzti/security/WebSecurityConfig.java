@@ -1,6 +1,7 @@
 package pl.wedel.szzti.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Collections;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -28,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
         .authorizeRequests().anyRequest().permitAll()
         .and()
-        .addFilter(new JwtAuthenticationFilter(authenticationManager(), objectMapper))
+        .addFilter(jwtAuthenticationManager(authenticationManager(), objectMapper))
         .addFilter(new JwtAuthorizationFilter(authenticationManager()))
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }
@@ -49,4 +53,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     return new BCryptPasswordEncoder();
   }
 
+  @Bean
+  CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(Collections.singletonList(System.getenv("FRONTEND_URL")));
+    configuration.applyPermitDefaultValues();
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
+  }
+
+  private JwtAuthenticationFilter jwtAuthenticationManager(
+      AuthenticationManager authenticationManager, ObjectMapper objectMapper) {
+    final JwtAuthenticationFilter filter = new JwtAuthenticationFilter(authenticationManager,
+        objectMapper);
+    filter.setFilterProcessesUrl("/api/login");
+    return filter;
+  }
 }

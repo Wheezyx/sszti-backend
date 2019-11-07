@@ -1,6 +1,5 @@
 package pl.wedel.szzti.mapper;
 
-
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,10 @@ public class RentalMapper {
   private final PlaceMapper placeMapper;
   private final ItemService itemService;
   private final RenterService renterService;
-  //TODO Consider remove fetching items, renters and places and just paste id to let db handle possible not existing keys.
+
+  //TODO Consider remove fetching items, renters and places and just paste id
+  // to let db handle possible not existing keys.
+
   public Rental fromDto(RentalDto rentalDto) {
     Rental rental = new Rental();
     final Item item = itemService.findById(rentalDto.getItem().getId());

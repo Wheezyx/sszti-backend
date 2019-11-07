@@ -64,15 +64,16 @@ public final class RentalSearchParameters {
   private void validate() {
     if (!ALL_PARAMETERS.containsAll(queryParams.keySet())) {
       throw new ValidationException(
-          new ErrorMessage("Invalid query parameters. Available are: " + ALL_PARAMETERS.toString()));
+          new ErrorMessage("Invalid query parameters. Available are: " +
+              ALL_PARAMETERS.toString()));
     }
     queryParams.entrySet().stream()
         .filter(entry -> entry.getKey().contains("Id"))
         .map(Entry::getValue)
-        .forEach(this::checkUUID);
+        .forEach(this::checkUuid);
   }
 
-  private void checkUUID(Object o) {
+  private void checkUuid(Object o) {
     Pattern pattern = Pattern
         .compile("/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/");
     if (pattern.matcher((CharSequence) o).matches()) {

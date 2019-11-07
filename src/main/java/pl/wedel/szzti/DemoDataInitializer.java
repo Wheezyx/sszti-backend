@@ -34,6 +34,15 @@ public class DemoDataInitializer implements CommandLineRunner {
   @Value(value = "classpath:demo-data/renters.csv")
   private Resource rentersResource;
 
+  @Value(value = "classpath:demo-data/users.csv")
+  private Resource usersResource;
+
+  @Value(value = "classpath:demo-data/user_authorities.csv")
+  private Resource userAuthoritiesResource;
+
+  @Value(value = "classpath:demo-data/user_authorities_assignment.csv")
+  private Resource userAuthoritiesAssignmentResource;
+
   private final JdbcTemplate jdbcTemplate;
 
   public DemoDataInitializer(JdbcTemplate jdbcTemplate) {
@@ -47,6 +56,9 @@ public class DemoDataInitializer implements CommandLineRunner {
     insertIntoDatabase("places", placesResource);
     insertIntoDatabase("renters", rentersResource);
     insertIntoDatabase("rentals", rentalsResource);
+    insertIntoDatabase("users", usersResource);
+    insertIntoDatabase("authorities", userAuthoritiesResource);
+    insertIntoDatabase("users_authorities", userAuthoritiesAssignmentResource);
   }
 
   private void insertIntoDatabase(String column, Resource resource) throws IOException {
