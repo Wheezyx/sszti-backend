@@ -16,7 +16,7 @@ public class RentalValidator {
   public void validateRental(RentalDto rentalDto) {
     if (rentalDto.getPlace() == null && rentalDto.getRenter() == null) {
       throw new ValidationException(
-          new ErrorMessage("Renter id and item id are null. Provide at least one."));
+          new ErrorMessage("Renter id and place id are null. Provide at least one."));
     }
 
     if (rentalDto.getItem() == null || rentalDto.getItem().getId() == null) {

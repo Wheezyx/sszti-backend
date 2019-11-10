@@ -45,7 +45,6 @@ public class RentalMapper {
     rentalDto.setItem(itemMapper.toDto(rental.getItem()));
     rentalDto.setRenter(renterMapper.toDto(rental.getRenter()));
     rentalDto.setPlace(placeMapper.toDto(rental.getPlace()));
-    rentalDto.setId(rental.getId());
     return rentalDto;
 
   }

@@ -22,7 +22,7 @@ import pl.wedel.szzti.validation.ItemDtoValidator;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/items")
-public class ItemController {
+public class  ItemController {
 
   private final ItemService itemService;
 

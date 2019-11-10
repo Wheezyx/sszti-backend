@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -50,7 +49,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
   @Override
   protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
-      FilterChain chain, Authentication authResult) throws IOException, ServletException {
+      FilterChain chain, Authentication authResult) throws IOException {
     User user = (User) authResult.getPrincipal();
 
     Set<String> roles = user.getAuthorities().stream()
@@ -58,7 +57,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         .collect(Collectors.toSet());
     log.debug("Generating token.");
     String token = Jwts.builder()
-        .signWith(SignatureAlgorithm.HS512, SecurityConstants.JWT_SECRET)
+        .signWith(SignatureAlgorithm.HS512, SecurityConstants.JWT_SECRET.getBytes())
         .setIssuer(SecurityConstants.TOKEN_ISSUER)
         .setSubject(user.getUsername())
         .setExpiration(new Date(System.currentTimeMillis() + 8640000))

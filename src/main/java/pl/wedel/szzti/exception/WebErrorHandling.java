@@ -21,6 +21,7 @@ public class WebErrorHandling {
   static {
     UNIQUE_CONSTRAINT_MAP.put("place_name_idx", "Place with provided name already exists");
     UNIQUE_CONSTRAINT_MAP.put("renter_code_idx", "Renter with provided code already exists");
+    UNIQUE_CONSTRAINT_MAP.put("rentals_pkey", "Item is already rented.");
   }
 
   @ExceptionHandler(NotFoundException.class)
@@ -48,8 +49,8 @@ public class WebErrorHandling {
     if (ex.getCause() instanceof ConstraintViolationException) {
       ConstraintViolationException cause = (ConstraintViolationException) ex.getCause();
       String message = UNIQUE_CONSTRAINT_MAP.getOrDefault(cause.getConstraintName(), null);
-
       if (message == null) {
+
         return new ErrorMessage(
             "No message found for constraint: " + cause.getConstraintName());
       }

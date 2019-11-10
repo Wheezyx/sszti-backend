@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(of = "item")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
-public class RentalDto extends BaseDto {
+public class RentalDto {
 
   private ItemDto item;
 
