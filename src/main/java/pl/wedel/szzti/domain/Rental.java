@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -23,15 +22,14 @@ import lombok.Setter;
 @Setter
 public class Rental extends BaseEntity {
 
-  @OneToOne(fetch = FetchType.EAGER)
-  @MapsId
+  @OneToOne
   private Item item;
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "place_id")
   private Place place;
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "renter_id")
   private Renter renter;
 

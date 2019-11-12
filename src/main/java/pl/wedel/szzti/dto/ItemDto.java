@@ -38,6 +38,9 @@ public class ItemDto extends BaseDto {
 
   private String description;
 
+  @JsonProperty(access = Access.READ_ONLY)
+  private boolean rented;
+
   @JsonDeserialize(using = LocalDateDeserializer.class)
   @JsonSerialize(using = LocalDateSerializer.class)
   private LocalDate dateOfDelivery;

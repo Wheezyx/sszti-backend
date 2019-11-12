@@ -18,11 +18,12 @@ public class ItemMapper {
         .insideType(item.getInsideType() != null ? item.getInsideType().name() : null)
         .equipment(item.isEquipment())
         .inventoryCode(item.getInventoryCode())
-        .itemType(item.getInsideType() != null ? item.getInsideType().name() : null)
+        .itemType(item.getItemType() != null ? item.getItemType().name() : null)
         .fullItemName(item.getFullItemName())
         .description(item.getDescription())
         .genericName(item.getGenericName() != null ? item.getGenericName().getName() : null)
         .dateOfDelivery(item.getDateOfDelivery())
+        .rented(item.getRental() != null)
         .build();
     itemDto.setId(item.getId());
     return itemDto;

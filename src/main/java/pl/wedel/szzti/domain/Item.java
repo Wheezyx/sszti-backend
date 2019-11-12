@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,9 +52,10 @@ public class Item extends BaseEntity {
 
   private LocalDate dateOfDelivery;
 
+  @OneToOne(mappedBy = "item")
+  private Rental rental;
+
   @ManyToOne
   @JoinColumn(name = "parent_id")
-  @Getter
-  @Setter
   private Item parent;
 }

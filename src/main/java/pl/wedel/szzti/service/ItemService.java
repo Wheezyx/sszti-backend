@@ -10,6 +10,7 @@ import pl.wedel.szzti.domain.Item;
 import pl.wedel.szzti.dto.ErrorMessage;
 import pl.wedel.szzti.exception.NotFoundException;
 import pl.wedel.szzti.repository.ItemRepository;
+import pl.wedel.szzti.web.ItemSearchParameters;
 
 @Service
 @AllArgsConstructor
@@ -18,9 +19,9 @@ public class ItemService {
 
   private final ItemRepository itemRepository;
 
-  public Page<Item> findAll(Pageable pageable) {
-    log.debug("Finding all items.");
-    return itemRepository.findAll(pageable);
+  public Page<Item> search(ItemSearchParameters searchParameters, Pageable pageable) {
+    log.debug("Finding items.");
+    return itemRepository.search(searchParameters, pageable);
   }
 
   public Item findById(UUID id) {

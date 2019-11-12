@@ -1,5 +1,6 @@
 package pl.wedel.szzti.web;
 
+import java.util.Map;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.wedel.szzti.domain.Item;
@@ -22,7 +24,7 @@ import pl.wedel.szzti.validation.ItemDtoValidator;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/items")
-public class  ItemController {
+public class ItemController {
 
   private final ItemService itemService;
 
@@ -32,8 +34,9 @@ public class  ItemController {
 
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
-  public Page<ItemDto> getItems(Pageable pageable) {
-    return itemService.findAll(pageable).map(itemMapper::toDto);
+  public Page<ItemDto> search(@RequestParam Map<String, Object> params, Pageable pageable) {
+    ItemSearchParameters itemSearchParameters = new ItemSearchParameters(params);
+    return itemService.search(itemSearchParameters, pageable).map(itemMapper::toDto);
   }
 
   @GetMapping(value = "/{id}")

@@ -1,0 +1,72 @@
+package pl.wedel.szzti.repository;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.support.PageableExecutionUtils;
+import pl.wedel.szzti.domain.Item;
+import pl.wedel.szzti.web.ItemSearchParameters;
+
+@Slf4j
+public class ItemRepositoryImpl implements SearchItemRepository {
+
+  @PersistenceContext
+  private EntityManager entityManager;
+
+  @Override
+  public Page<Item> search(ItemSearchParameters searchParameters, Pageable pageable) {
+    log.debug("Starting builder query");
+    CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<Item> query = builder.createQuery(Item.class);
+    Root<Item> root = query.from(Item.class);
+    root.fetch("rental", JoinType.LEFT);
+    root.fetch("genericName", JoinType.LEFT);
+    query.select(root);
+    List<Predicate> whereas = new ArrayList<>();
+
+    if (searchParameters.containsKey("code")) {
+      log.debug("Added where with code: {}", searchParameters.getCode());
+      whereas.add(
+          builder.and(builder.like(root.get("inventoryCode"),
+              "%" + searchParameters.getCode() + "%")));
+    }
+
+    if (whereas.size() > 0) {
+      Predicate[] whereasArray = new Predicate[whereas.size()];
+      whereas.toArray(whereasArray);
+      query.where(whereasArray);
+    }
+    List<Item> list = entityManager.createQuery(query)
+        .setFirstResult(pageable.getPageNumber() * pageable
+            .getPageSize())
+        .setMaxResults(pageable.getPageSize()).getResultList();
+    return PageableExecutionUtils.getPage(list, pageable, () -> getCountForItems(whereas));
+  }
+
+  private Long getCountForItems(List<Predicate> whereas) {
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+
+    CriteriaQuery<Long> countQuery = criteriaBuilder
+        .createQuery(Long.class);
+    countQuery.select(criteriaBuilder.count(
+        countQuery.from(Item.class)));
+    if (whereas.size() > 0) {
+      Predicate[] whereasArray = new Predicate[whereas.size()];
+      whereas.toArray(whereasArray);
+      countQuery.where(whereasArray);
+    }
+    Long count = entityManager.createQuery(countQuery)
+        .getSingleResult();
+
+    return count;
+  }
+}

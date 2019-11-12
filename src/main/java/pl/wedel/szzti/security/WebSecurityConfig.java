@@ -55,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   @Bean
-  @Profile("!dev")
+  @Profile("dev")
   CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.setAllowedOrigins(Collections.singletonList(System.getenv("FRONTEND_URL")));
@@ -66,10 +66,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   @Bean
-  @Profile("dev")
+  @Profile("!dev")
   CorsConfigurationSource corsConfigurationSourceDev() {
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.applyPermitDefaultValues();
+    configuration.setAllowedOrigins(Collections.singletonList("*"));
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
     return source;
