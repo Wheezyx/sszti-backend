@@ -22,4 +22,14 @@ public class RenterMapper {
     renterDto.setId(renter.getId());
     return renterDto;
   }
+
+  public Renter fromDto(RenterDto renterDto) {
+    Renter renter = new Renter();
+    renter.setCode(renterDto.getCode());
+    renter.setFirstName(renterDto.getName());
+    renter.setLastName(renterDto.getSurname());
+    renter.setId(renterDto.getId());
+
+    return renter;
+  }
 }

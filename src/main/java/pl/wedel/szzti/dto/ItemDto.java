@@ -46,6 +46,5 @@ public class ItemDto extends BaseDto {
   private LocalDate dateOfDelivery;
 
   @JsonSerialize(as = ItemDto.class)
-  @JsonProperty(access = Access.WRITE_ONLY)
   private ItemDto parent;
 }

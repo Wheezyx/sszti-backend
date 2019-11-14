@@ -29,6 +29,7 @@ public class ItemRepositoryImpl implements SearchItemRepository {
     CriteriaQuery<Item> query = builder.createQuery(Item.class);
     Root<Item> root = query.from(Item.class);
     root.fetch("rental", JoinType.LEFT);
+    root.fetch("parent", JoinType.LEFT);
     root.fetch("genericName", JoinType.LEFT);
     query.select(root);
     List<Predicate> whereas = new ArrayList<>();
@@ -38,6 +39,11 @@ public class ItemRepositoryImpl implements SearchItemRepository {
       whereas.add(
           builder.and(builder.like(root.get("inventoryCode"),
               "%" + searchParameters.getCode() + "%")));
+    }
+
+    if (searchParameters.containsKey("skipRented")) {
+      whereas.add(
+          builder.and(builder.isNull(root.join("rental", JoinType.LEFT).get("id"))));
     }
 
     if (whereas.size() > 0) {

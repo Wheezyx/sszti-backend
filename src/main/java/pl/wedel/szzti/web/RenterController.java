@@ -7,12 +7,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pl.wedel.szzti.dto.RenterDto;
 import pl.wedel.szzti.mapper.RenterMapper;
 import pl.wedel.szzti.service.RenterService;
+import pl.wedel.szzti.validation.RenterDtoValidator;
 
 @RestController
 @RequestMapping("/api/renters")
@@ -21,12 +24,20 @@ public class RenterController {
 
   private final RenterMapper renterMapper;
   private final RenterService renterService;
+  private final RenterDtoValidator renterDtoValidator;
 
   @GetMapping
   public Page<RenterDto> searchRenters(Pageable pageable,
       @RequestParam Map<String, String> params) {
     return renterService.search(pageable, params).map(renterMapper::toDto);
   }
+
+  @PostMapping
+  public RenterDto saveRenter(@RequestBody RenterDto renterDto) {
+    renterDtoValidator.validate(renterDto);
+    return renterMapper.toDto(renterService.save(renterMapper.fromDto(renterDto)));
+  }
+
 
   @GetMapping("/{id}")
   public RenterDto getRenter(@PathVariable("id") UUID id) {

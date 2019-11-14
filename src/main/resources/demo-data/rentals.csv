@@ -2,3 +2,14 @@ id, item_id, place_id, renter_id, start_date, end_date
 '4548c28e-ce12-49ce-9a0d-feba7d2ff65c','fffa0207-abfe-4289-8f5e-5462d18cce43', 'd4a20291-f7a1-468a-99f6-39e7d35b5bfc', null, null, null
 'd84b9d6c-e9fc-4865-ad95-a5a2ec851797','11dae30a-e24a-4646-8700-0c03d9c62d86', null, '0bb60e7f-d3d8-431c-8278-55d233fb656e', null, null
 '2d257ee8-91eb-436c-ab10-dc54de189398','329c3b70-a21b-40ad-88dd-5467e57348b4', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null
+'2d257ee8-91eb-436c-ab10-dc54de189391','5de489cf-dd4d-4451-97d9-93eeda2c08f0', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null
+'2d257ee8-91eb-436c-ab10-dc54de189392','5de489cf-dd4d-4451-97d9-93eeda2c08f2', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null
+'2d257ee8-91eb-436c-ab10-dc54de189393','5de489cf-dd4d-4451-97d9-93eeda2c08f3', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null
+'2d257ee8-91eb-436c-ab10-dc54de189394','5de489cf-dd4d-4451-97d9-93eeda2c08f4', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null
+'2d257ee8-91eb-436c-ab10-dc54de189395','5de489cf-dd4d-4451-97d9-93eeda2c08f5', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null
+'2d257ee8-91eb-436c-ab10-dc54de189312','5de489cf-dd4d-4451-97d9-93eeda2c08f6', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null
+'2d257ee8-91eb-436c-ab10-dc54de189311','5de489cf-dd4d-4451-97d9-93eeda2c08f7', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null
+'2d257ee8-91eb-436c-ab10-dc54de189315','5de489cf-dd4d-4451-97d9-93eeda2c08f8', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null
+'2d257ee8-91eb-436c-ab10-dc54de189361','5de489cf-dd4d-4451-97d9-93eeda2c08f9', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null
+'2d257ee8-91eb-436c-ab10-dc54de189512','5de489cf-dd4d-4451-97d9-93eeda2c0810', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null
+'2d257ee8-91eb-436c-ab10-dc54de181312','5de489cf-dd4d-4451-97d9-93eeda2c0551', 'f8481bd4-7a1d-4a65-acaa-6dd11034b923', null, null, null

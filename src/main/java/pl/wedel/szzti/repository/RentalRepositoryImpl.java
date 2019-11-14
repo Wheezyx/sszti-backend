@@ -34,7 +34,8 @@ public class RentalRepositoryImpl implements SearchRentalRepository {
     CriteriaQuery<Rental> query = builder.createQuery(Rental.class);
     Root<Rental> root = query.from(Rental.class);
     query.select(root);
-    root.fetch("item", JoinType.LEFT);
+    root.fetch("item", JoinType.LEFT).fetch("genericName", JoinType.LEFT);
+    root.fetch("item", JoinType.LEFT).fetch("parent", JoinType.LEFT);
     root.fetch("renter", JoinType.LEFT);
     root.fetch("place", JoinType.LEFT);
     List<Predicate> whereas = new ArrayList<>();
@@ -50,38 +51,64 @@ public class RentalRepositoryImpl implements SearchRentalRepository {
       log.debug("Added where with renter id: {}", searchParameters.getRenterId());
       whereas.add(
           builder.and(builder.equal(root.join("renter").get("id"),
-              searchParameters.getItemId())));
+              searchParameters.getRenterId())));
     }
 
     if (searchParameters.containsKey(PLACE_ID)) {
       log.debug("Added where with place id: {}", searchParameters.getPlaceId());
       whereas.add(
           builder.and(builder.equal(root.join("place").get("id"),
-              searchParameters.getItemId())));
+              searchParameters.getPlaceId())));
     }
 
     Predicate[] whereasArray = new Predicate[whereas.size()];
     whereas.toArray(whereasArray);
     query.where(whereasArray);
+
     List<Rental> list = entityManager.createQuery(query)
         .setFirstResult(pageable.getPageNumber() * pageable
             .getPageSize())
         .setMaxResults(pageable.getPageSize()).getResultList();
-    return PageableExecutionUtils.getPage(list, pageable, () -> getCountForRentals(whereas));
+    return PageableExecutionUtils.getPage(list, pageable, () -> getCountForRentals(searchParameters));
   }
 
-  private Long getCountForRentals(List<Predicate> whereas) {
-    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+  //TODO REWRITE DRY!!!!
+  private Long getCountForRentals(RentalSearchParameters searchParameters) {
+    CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 
-    CriteriaQuery<Long> countQuery = criteriaBuilder
+    CriteriaQuery<Long> countQuery = builder
         .createQuery(Long.class);
-    countQuery.select(criteriaBuilder.count(
-        countQuery.from(Rental.class)));
-    if (whereas.size() > 0) {
-      Predicate[] whereasArray = new Predicate[whereas.size()];
-      whereas.toArray(whereasArray);
-      countQuery.where(whereasArray);
+    Root<Rental> root = countQuery.from(Rental.class);
+    root.join("item", JoinType.LEFT);
+    root.join("renter", JoinType.LEFT);
+    root.join("place", JoinType.LEFT);
+    countQuery.select(builder.count(root));
+    List<Predicate> whereas = new ArrayList<>();
+
+    if (searchParameters.containsKey(ITEM_ID)) {
+      log.debug("Added where with item id: {}", searchParameters.getItemId());
+      whereas.add(
+          builder.and(builder.equal(root.join("item").get("id"),
+              searchParameters.getItemId())));
     }
+
+    if (searchParameters.containsKey(RENTER_ID)) {
+      log.debug("Added where with renter id: {}", searchParameters.getRenterId());
+      whereas.add(
+          builder.and(builder.equal(root.join("renter").get("id"),
+              searchParameters.getRenterId())));
+    }
+
+    if (searchParameters.containsKey(PLACE_ID)) {
+      log.debug("Added where with place id: {}", searchParameters.getPlaceId());
+      whereas.add(
+          builder.and(builder.equal(root.join("place").get("id"),
+              searchParameters.getPlaceId())));
+    }
+
+    Predicate[] whereasArray = new Predicate[whereas.size()];
+    whereas.toArray(whereasArray);
+    countQuery.where(whereasArray);
     Long count = entityManager.createQuery(countQuery)
         .getSingleResult();
 

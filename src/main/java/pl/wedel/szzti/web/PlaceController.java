@@ -1,11 +1,13 @@
 package pl.wedel.szzti.web;
 
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +41,13 @@ public class PlaceController {
     placeDtoValidator.validate(placeDto);
     Place place = placeMapper.fromDto(placeDto);
     return placeMapper.toDto(placeService.save(place));
+  }
+
+  @GetMapping(value = "/{id}")
+  @ResponseStatus(HttpStatus.OK)
+  public PlaceDto getItem(@PathVariable("id") UUID placeId) {
+    Place place = placeService.findById(placeId);
+    return placeMapper.toDto(place);
   }
 
 }

@@ -1,6 +1,7 @@
 package pl.wedel.szzti.domain;
 
 import java.time.LocalDate;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -52,7 +53,7 @@ public class Item extends BaseEntity {
 
   private LocalDate dateOfDelivery;
 
-  @OneToOne(mappedBy = "item")
+  @OneToOne(mappedBy = "item", cascade = CascadeType.REMOVE)
   private Rental rental;
 
   @ManyToOne

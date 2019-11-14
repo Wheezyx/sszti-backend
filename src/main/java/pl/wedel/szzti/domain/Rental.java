@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 public class Rental extends BaseEntity {
 
-  @OneToOne
+  @OneToOne(fetch = FetchType.LAZY)
   private Item item;
 
   @ManyToOne(fetch = FetchType.LAZY)

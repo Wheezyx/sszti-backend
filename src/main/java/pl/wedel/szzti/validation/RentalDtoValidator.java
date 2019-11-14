@@ -9,7 +9,7 @@ import pl.wedel.szzti.repository.RentalRepository;
 
 @Service
 @AllArgsConstructor
-public class RentalValidator {
+public class RentalDtoValidator {
 
   private final RentalRepository rentalRepository;
 

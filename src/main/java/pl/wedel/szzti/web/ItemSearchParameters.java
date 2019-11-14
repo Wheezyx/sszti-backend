@@ -13,9 +13,10 @@ import pl.wedel.szzti.exception.ValidationException;
 public class ItemSearchParameters {
 
   private static final String CODE = "code";
+  private static final String SKIP_RENTED = "skipRented";
 
   private static final List<String> ALL_PARAMETERS = Collections
-      .unmodifiableList(Arrays.asList(CODE));
+      .unmodifiableList(Arrays.asList(CODE, SKIP_RENTED));
 
   private HashMap<String, Object> queryParams;
 
@@ -36,6 +37,13 @@ public class ItemSearchParameters {
       return null;
     }
     return (String) queryParams.get(CODE);
+  }
+
+  public String getSkipRented() {
+    if (!queryParams.containsKey(SKIP_RENTED)) {
+      return null;
+    }
+    return (String) queryParams.get(SKIP_RENTED);
   }
 
   private void validate() {

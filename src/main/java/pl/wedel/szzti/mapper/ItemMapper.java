@@ -25,6 +25,7 @@ public class ItemMapper {
         .dateOfDelivery(item.getDateOfDelivery())
         .rented(item.getRental() != null)
         .build();
+    itemDto.setParent(toDto(item.getParent()));
     itemDto.setId(item.getId());
     return itemDto;
   }
