@@ -1,5 +1,6 @@
 package pl.wedel.szzti.web;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import pl.wedel.szzti.domain.Rental;
 import pl.wedel.szzti.dto.RentalDto;
+import pl.wedel.szzti.dto.RentalWithManyItemsDto;
 import pl.wedel.szzti.mapper.RentalMapper;
 import pl.wedel.szzti.service.RentalService;
 import pl.wedel.szzti.validation.RentalDtoValidator;
@@ -49,9 +52,11 @@ public class RentalController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public RentalDto saveRental(@RequestBody RentalDto rentalDto) {
-    rentalDtoValidator.validateRental(rentalDto);
-    return rentalMapper.toDto(rentalService.save(rentalMapper.fromDto(rentalDto)));
+  public Iterable<Rental> saveRental(@RequestBody RentalWithManyItemsDto rentalDto) {
+    rentalDtoValidator.validateRentalWithManyItems(rentalDto);
+    List<Rental> rentals = rentalMapper.mapToListOfRentals(rentalDto);
+    //TODO CONVERT TO DTO
+    return rentalService.saveAll(rentals);
   }
 
   @DeleteMapping("/{id}")

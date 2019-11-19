@@ -39,4 +39,7 @@ public class ItemService {
     return itemRepository.save(item);
   }
 
+  public void deleteById(UUID itemId) {
+    this.itemRepository.deleteById(itemId);
+  }
 }

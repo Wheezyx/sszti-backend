@@ -21,7 +21,8 @@ public class WebErrorHandling {
   static {
     UNIQUE_CONSTRAINT_MAP.put("place_name_idx", "Place with provided name already exists");
     UNIQUE_CONSTRAINT_MAP.put("renter_code_idx", "Renter with provided code already exists");
-    UNIQUE_CONSTRAINT_MAP.put("rentals_pkey", "Item is already rented.");
+    UNIQUE_CONSTRAINT_MAP.put("rentals_pkey", "Provided item is already rented.");
+    UNIQUE_CONSTRAINT_MAP.put("rental_item_pkey", "Provided item is already rented.");
   }
 
   @ExceptionHandler(NotFoundException.class)

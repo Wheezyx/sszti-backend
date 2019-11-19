@@ -31,7 +31,7 @@ public class ItemMapper {
   }
 
   public Item fromDto(ItemDto itemDto) {
-    return Item.builder()
+    Item item =  Item.builder()
         .placeOfPosting(itemDto.getPlaceOfPosting())
         .insideType(InsideType.fromString(itemDto.getInsideType()))
         .equipment(itemDto.isEquipment())
@@ -42,5 +42,7 @@ public class ItemMapper {
         //TODO ADD GENERIC NAME FINDING BY NAME AND ADDING HERE.
         .dateOfDelivery(itemDto.getDateOfDelivery())
         .build();
+    item.setId(itemDto.getId());
+    return item;
   }
 }

@@ -25,7 +25,7 @@ public class RenterService {
 
     if (params.containsKey(CODE)) {
       log.debug("Finding renters with code {}", params.get(CODE));
-      return renterRepository.findByCode(pageable, params.get(CODE));
+      return renterRepository.findByCodeContaining(pageable, params.get(CODE));
     }
 
     log.debug("Finding all renters.");
@@ -41,6 +41,10 @@ public class RenterService {
   public Renter save(Renter renter) {
     log.debug("Saving renter");
     return renterRepository.save(renter);
+  }
+
+  public void deleteById(UUID id) {
+    this.renterRepository.deleteById(id);
   }
 
   public Renter update(Renter renter) {

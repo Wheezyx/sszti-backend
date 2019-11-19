@@ -8,6 +8,6 @@ import pl.wedel.szzti.domain.Renter;
 
 public interface RenterRepository extends PagingAndSortingRepository<Renter, UUID> {
 
-  Page<Renter> findByCode(Pageable pageable, String code);
+  Page<Renter> findByCodeContaining(Pageable pageable, String code);
 
 }

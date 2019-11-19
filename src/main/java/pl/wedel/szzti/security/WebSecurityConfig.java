@@ -1,11 +1,13 @@
 package pl.wedel.szzti.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Arrays;
 import java.util.Collections;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -60,6 +62,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.setAllowedOrigins(Collections.singletonList(System.getenv("FRONTEND_URL")));
     configuration.applyPermitDefaultValues();
+    configuration.setAllowedMethods(Collections.unmodifiableList(
+        Arrays.asList(HttpMethod.GET.name(), HttpMethod.HEAD.name(), HttpMethod.POST.name(),
+            HttpMethod.DELETE.name())));
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
     return source;
@@ -71,6 +76,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.applyPermitDefaultValues();
     configuration.setAllowedOrigins(Collections.singletonList("*"));
+    configuration.setAllowedMethods(Collections.unmodifiableList(Arrays
+        .asList(HttpMethod.GET.name(), HttpMethod.HEAD.name(), HttpMethod.POST.name(),
+            HttpMethod.DELETE.name())));
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
     return source;

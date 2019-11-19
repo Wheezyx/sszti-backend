@@ -32,47 +32,54 @@ public class ItemRepositoryImpl implements SearchItemRepository {
     root.fetch("parent", JoinType.LEFT);
     root.fetch("genericName", JoinType.LEFT);
     query.select(root);
-    List<Predicate> whereas = new ArrayList<>();
 
+    applyFilters(builder, root, query, searchParameters);
+
+    List<Item> list = entityManager.createQuery(query)
+        .setFirstResult(pageable.getPageNumber() * pageable
+            .getPageSize())
+        .setMaxResults(pageable.getPageSize()).getResultList();
+    return PageableExecutionUtils.getPage(list, pageable, () -> getCountForItems(searchParameters));
+  }
+
+  private Long getCountForItems(ItemSearchParameters searchParameters) {
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
+    Root<Item> root = countQuery.from(Item.class);
+    root.join("rental", JoinType.LEFT);
+    root.join("parent", JoinType.LEFT);
+    root.join("genericName", JoinType.LEFT);
+    countQuery.select(criteriaBuilder.count(root));
+
+    applyFilters(criteriaBuilder, root, countQuery, searchParameters);
+
+    return entityManager.createQuery(countQuery).getSingleResult();
+  }
+
+  private void applyFilters(CriteriaBuilder builder, Root<Item> root, CriteriaQuery criteriaQuery,
+      ItemSearchParameters searchParameters) {
+
+    List<Predicate> whereas = new ArrayList<>();
     if (searchParameters.containsKey("code")) {
       log.debug("Added where with code: {}", searchParameters.getCode());
       whereas.add(
           builder.and(builder.like(root.get("inventoryCode"),
               "%" + searchParameters.getCode() + "%")));
     }
-
     if (searchParameters.containsKey("skipRented")) {
       whereas.add(
           builder.and(builder.isNull(root.join("rental", JoinType.LEFT).get("id"))));
     }
 
+    if (searchParameters.containsKey("skipNotRented")) {
+      whereas.add(
+          builder.and(builder.isNotNull(root.join("rental", JoinType.LEFT).get("id"))));
+    }
+
     if (whereas.size() > 0) {
       Predicate[] whereasArray = new Predicate[whereas.size()];
       whereas.toArray(whereasArray);
-      query.where(whereasArray);
+      criteriaQuery.where(whereasArray);
     }
-    List<Item> list = entityManager.createQuery(query)
-        .setFirstResult(pageable.getPageNumber() * pageable
-            .getPageSize())
-        .setMaxResults(pageable.getPageSize()).getResultList();
-    return PageableExecutionUtils.getPage(list, pageable, () -> getCountForItems(whereas));
-  }
-
-  private Long getCountForItems(List<Predicate> whereas) {
-    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-
-    CriteriaQuery<Long> countQuery = criteriaBuilder
-        .createQuery(Long.class);
-    countQuery.select(criteriaBuilder.count(
-        countQuery.from(Item.class)));
-    if (whereas.size() > 0) {
-      Predicate[] whereasArray = new Predicate[whereas.size()];
-      whereas.toArray(whereasArray);
-      countQuery.where(whereasArray);
-    }
-    Long count = entityManager.createQuery(countQuery)
-        .getSingleResult();
-
-    return count;
   }
 }

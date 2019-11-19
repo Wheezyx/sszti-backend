@@ -1,7 +1,6 @@
 package pl.wedel.szzti.dto;
 
-import java.time.LocalDate;
-import java.util.UUID;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -15,17 +14,10 @@ import lombok.Setter;
 @Setter
 @Builder
 @NoArgsConstructor
-public class RentalDto {
-
-  private UUID id;
-
-  private ItemDto item;
+public class RentalWithManyItemsDto {
+  private List<ItemDto> items;
 
   private PlaceDto place;
 
   private RenterDto renter;
-
-  private LocalDate start;
-
-  private LocalDate end;
 }

@@ -1,12 +1,17 @@
 package pl.wedel.szzti.mapper;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.wedel.szzti.domain.Item;
+import pl.wedel.szzti.domain.Place;
 import pl.wedel.szzti.domain.Rental;
 import pl.wedel.szzti.domain.Renter;
+import pl.wedel.szzti.dto.ItemDto;
 import pl.wedel.szzti.dto.RentalDto;
+import pl.wedel.szzti.dto.RentalWithManyItemsDto;
 import pl.wedel.szzti.service.ItemService;
 import pl.wedel.szzti.service.RenterService;
 
@@ -45,7 +50,24 @@ public class RentalMapper {
     rentalDto.setItem(itemMapper.toDto(rental.getItem()));
     rentalDto.setRenter(renterMapper.toDto(rental.getRenter()));
     rentalDto.setPlace(placeMapper.toDto(rental.getPlace()));
+    rentalDto.setId(rental.getId());
     return rentalDto;
 
+  }
+
+  public List<Rental> mapToListOfRentals(RentalWithManyItemsDto rentalDto) {
+    return rentalDto.getItems().stream()
+        .map(item -> mapToRental(item, rentalDto)).collect(Collectors.toList());
+  }
+
+  private Rental mapToRental(ItemDto itemDto, RentalWithManyItemsDto rentalDto) {
+    Rental rental = new Rental();
+    Item item = itemMapper.fromDto(itemDto);
+    Renter renter = renterMapper.fromDto(rentalDto.getRenter());
+    Place place = placeMapper.fromDto(rentalDto.getPlace());
+    rental.setItem(item);
+    rental.setRenter(renter);
+    rental.setPlace(place);
+    return rental;
   }
 }

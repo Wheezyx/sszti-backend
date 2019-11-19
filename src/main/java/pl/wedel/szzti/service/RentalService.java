@@ -1,5 +1,6 @@
 package pl.wedel.szzti.service;
 
+import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -23,6 +24,10 @@ public class RentalService {
 
   public Rental save(Rental rental) {
     return rentalRepository.save(rental);
+  }
+
+  public Iterable<Rental> saveAll(List<Rental> rentals) {
+    return rentalRepository.saveAll(rentals);
   }
 
   public void remove(UUID id) {

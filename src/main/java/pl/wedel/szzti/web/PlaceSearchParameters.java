@@ -10,18 +10,16 @@ import java.util.regex.Pattern;
 import pl.wedel.szzti.dto.ErrorMessage;
 import pl.wedel.szzti.exception.ValidationException;
 
-public class ItemSearchParameters {
+public class PlaceSearchParameters {
 
-  private static final String CODE = "code";
-  private static final String SKIP_RENTED = "skipRented";
-  private static final String SKIP_NOT_RENTED = "skipNotRented";
+  private static final String NAME = "name";
 
   private static final List<String> ALL_PARAMETERS = Collections
-      .unmodifiableList(Arrays.asList(CODE, SKIP_RENTED, SKIP_NOT_RENTED));
+      .unmodifiableList(Arrays.asList(NAME));
 
   private HashMap<String, Object> queryParams;
 
-  public ItemSearchParameters(Map<String, Object> queryMap) {
+  public PlaceSearchParameters(Map<String, Object> queryMap) {
     queryMap.remove("sort");
     queryMap.remove("page");
     queryMap.remove("size");
@@ -33,11 +31,11 @@ public class ItemSearchParameters {
     return queryParams.containsKey(key);
   }
 
-  public String getCode() {
-    if (!queryParams.containsKey(CODE)) {
+  public String getPlaceName() {
+    if (!queryParams.containsKey(NAME)) {
       return null;
     }
-    return (String) queryParams.get(CODE);
+    return (String) queryParams.get(NAME);
   }
 
   private void validate() {
