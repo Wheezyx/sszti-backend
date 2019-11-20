@@ -1,5 +1,6 @@
 package pl.wedel.szzti.service;
 
+import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,10 @@ public class ItemService {
     log.debug("Finding item with id {}", id);
     return itemRepository.findById(id).orElseThrow(() -> new NotFoundException(
         new ErrorMessage(String.format("Item with id %s not found.", id.toString()))));
+  }
+
+  public List<Item> findAllByIds(List<UUID> itemIds) {
+    return this.itemRepository.findAllByIdIn(itemIds);
   }
 
   public Item save(Item item) {

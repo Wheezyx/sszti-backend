@@ -20,6 +20,10 @@ public class PlaceMapper {
   }
 
   public Place fromDto(PlaceDto placeDto) {
+    if (placeDto == null) {
+      return null;
+    }
+
     Place place = new Place();
     place.setName(placeDto.getName());
     place.setId(placeDto.getId());

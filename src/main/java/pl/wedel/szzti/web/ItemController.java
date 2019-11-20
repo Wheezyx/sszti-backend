@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.wedel.szzti.domain.Item;
 import pl.wedel.szzti.dto.ItemDto;
+import pl.wedel.szzti.mapper.ItemCsvMapper;
 import pl.wedel.szzti.mapper.ItemMapper;
 import pl.wedel.szzti.service.ItemService;
 import pl.wedel.szzti.validation.ItemDtoValidator;
@@ -32,6 +33,8 @@ public class ItemController {
   private final ItemDtoValidator itemDtoValidator;
 
   private final ItemMapper itemMapper;
+
+  private final ItemCsvMapper itemCsvMapper;
 
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
