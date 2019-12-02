@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
-@EqualsAndHashCode(of = "item")
+@EqualsAndHashCode(of = "items")
 @Getter
 @Setter
 @Builder

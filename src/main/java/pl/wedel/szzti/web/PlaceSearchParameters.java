@@ -1,21 +1,20 @@
 package pl.wedel.szzti.web;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.regex.Pattern;
 import pl.wedel.szzti.dto.ErrorMessage;
 import pl.wedel.szzti.exception.ValidationException;
+import pl.wedel.szzti.utils.UUIDHelper;
 
 public class PlaceSearchParameters {
 
   private static final String NAME = "name";
 
   private static final List<String> ALL_PARAMETERS = Collections
-      .unmodifiableList(Arrays.asList(NAME));
+      .unmodifiableList(Collections.singletonList(NAME));
 
   private HashMap<String, Object> queryParams;
 
@@ -47,14 +46,6 @@ public class PlaceSearchParameters {
     queryParams.entrySet().stream()
         .filter(entry -> entry.getKey().contains("Id"))
         .map(Entry::getValue)
-        .forEach(this::checkUuid);
-  }
-
-  private void checkUuid(Object o) {
-    Pattern pattern = Pattern
-        .compile("/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/");
-    if (pattern.matcher((CharSequence) o).matches()) {
-      throw new ValidationException(new ErrorMessage("Invalid UUID format"));
-    }
+        .forEach(UUIDHelper::validateUuidFormat);
   }
 }

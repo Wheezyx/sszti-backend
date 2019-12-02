@@ -24,6 +24,9 @@ public class RenterMapper {
   }
 
   public Renter fromDto(RenterDto renterDto) {
+    if (renterDto == null) {
+      return null;
+    }
     Renter renter = new Renter();
     renter.setCode(renterDto.getCode());
     renter.setFirstName(renterDto.getName());

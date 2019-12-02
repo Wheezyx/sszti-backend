@@ -45,6 +45,13 @@ public class PlaceService {
   }
 
   public void removeById(UUID placeId) {
+    log.debug("Removing place with id: {}", placeId);
+
     this.placeRepository.deleteById(placeId);
+  }
+
+  public Place update(Place place) {
+    log.debug("Updating place with id {}", place.getId());
+    return this.placeRepository.save(place);
   }
 }

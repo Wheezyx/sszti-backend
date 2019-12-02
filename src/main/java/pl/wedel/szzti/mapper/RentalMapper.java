@@ -25,11 +25,10 @@ public class RentalMapper {
   private final ItemService itemService;
   private final RenterService renterService;
 
-  //TODO Consider remove fetching items, renters and places and just paste id
-  // to let db handle possible not existing keys.
-
   public Rental fromDto(RentalDto rentalDto) {
     Rental rental = new Rental();
+    //TODO REPLACE WITH MAPPER CALLS AND LET DB HANDLE (?)
+    // THE EXCEPTION WITH NON EXISTING FOREIGN KEY
     final Item item = itemService.findById(rentalDto.getItem().getId());
     final Renter renter = renterService.findById(rentalDto.getRenter().getId());
 

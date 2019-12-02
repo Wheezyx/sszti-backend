@@ -41,10 +41,12 @@ public class ItemService {
   }
 
   public Item update(Item item) {
+    log.debug("Updating item with id: {}", item.getId());
     return itemRepository.save(item);
   }
 
   public void deleteById(UUID itemId) {
+    log.debug("Removing item with id: {}", itemId);
     this.itemRepository.deleteById(itemId);
   }
 }

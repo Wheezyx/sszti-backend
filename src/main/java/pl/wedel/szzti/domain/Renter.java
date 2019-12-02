@@ -29,7 +29,6 @@ public class Renter extends BaseEntity {
   private String code;
 
   @OneToMany(mappedBy = "renter",
-      cascade = CascadeType.ALL,
-      orphanRemoval = true)
+      cascade = CascadeType.ALL)
   private Set<Rental> itemRentals;
 }

@@ -12,18 +12,14 @@ import pl.wedel.szzti.exception.ValidationException;
 @Service
 public class ItemDtoValidator {
 
-  public void validateItem(ItemDto itemDto) {
-    validate(itemDto);
-  }
-
-  public void validateItem(UUID itemId, ItemDto itemDto) {
+  public void validate(UUID itemId, ItemDto itemDto) {
     if (!itemId.equals(itemDto.getId())) {
       throw new ValidationException(new ErrorMessage("Item id mismatch."));
     }
     validate(itemDto);
   }
 
-  private void validate(ItemDto itemDto) {
+  public void validate(ItemDto itemDto) {
     if (null == InsideType.fromString(itemDto.getInsideType())) {
       throw new ValidationException(new ErrorMessage("Invalid inside type. Available: " + Arrays
           .toString(InsideType.values())));

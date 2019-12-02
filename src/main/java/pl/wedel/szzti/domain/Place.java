@@ -27,7 +27,6 @@ public class Place extends BaseEntity {
   private String name;
 
   @OneToMany(mappedBy = "place",
-      cascade = CascadeType.ALL,
-      orphanRemoval = true)
+      cascade = CascadeType.ALL)
   private Set<Rental> itemRentals;
 }

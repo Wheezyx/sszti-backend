@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +35,7 @@ public class PlaceController {
 
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
-  public Page<PlaceDto> searchPlaces(@RequestParam Map<String,Object> params, Pageable pageable) {
+  public Page<PlaceDto> searchPlaces(@RequestParam Map<String, Object> params, Pageable pageable) {
 
     PlaceSearchParameters searchParameters = new PlaceSearchParameters(params);
 
@@ -62,4 +63,11 @@ public class PlaceController {
     placeService.removeById(placeId);
   }
 
+  @PutMapping("/{id}")
+  @ResponseStatus(HttpStatus.OK)
+  public PlaceDto updatePlace(@PathVariable("id") UUID id, @RequestBody PlaceDto placeDto) {
+    placeDtoValidator.validate(id, placeDto);
+
+    return placeMapper.toDto(placeService.update(placeMapper.fromDto(placeDto)));
+  }
 }

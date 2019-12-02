@@ -30,6 +30,8 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'org.springframework.boot:spring-boot-starter-jdbc'
     compile 'org.springframework.boot:spring-boot-starter-security'
+    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.10.0'
+    compile group: 'com.lowagie', name: 'itext', version: '2.1.7'
     implementation 'com.opencsv:opencsv:4.5'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.projectlombok:lombok'

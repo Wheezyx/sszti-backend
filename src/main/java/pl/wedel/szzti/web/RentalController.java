@@ -52,6 +52,7 @@ public class RentalController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
+  //TODO ReWRITE THIS TO REST LIKE METHOD, TO CREATE SPECIFIC RESOURCE, NOT A LIST.
   public Iterable<Rental> saveRental(@RequestBody RentalWithManyItemsDto rentalDto) {
     rentalDtoValidator.validateRentalWithManyItems(rentalDto);
     List<Rental> rentals = rentalMapper.mapToListOfRentals(rentalDto);

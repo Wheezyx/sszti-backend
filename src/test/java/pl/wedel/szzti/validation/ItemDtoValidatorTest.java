@@ -40,7 +40,7 @@ public class ItemDtoValidatorTest {
     itemDto.setId(itemId);
 
     //when
-    itemDtoValidator.validateItem(itemId, itemDto);
+    itemDtoValidator.validate(itemId, itemDto);
 
     //then
   }
@@ -51,7 +51,7 @@ public class ItemDtoValidatorTest {
     itemDto.setId(UUID.randomUUID());
 
     //when
-    itemDtoValidator.validateItem(UUID.randomUUID(), itemDto);
+    itemDtoValidator.validate(UUID.randomUUID(), itemDto);
 
     //then
   }
@@ -65,7 +65,7 @@ public class ItemDtoValidatorTest {
     itemDto.setInsideType("TEST");
 
     //when
-    itemDtoValidator.validateItem(itemId, itemDto);
+    itemDtoValidator.validate(itemId, itemDto);
 
     //then
   }
@@ -77,7 +77,7 @@ public class ItemDtoValidatorTest {
     itemDto.setId(UUID.randomUUID());
     itemDto.setItemType("TEST");
     //when
-    itemDtoValidator.validateItem(UUID.randomUUID(), itemDto);
+    itemDtoValidator.validate(UUID.randomUUID(), itemDto);
 
     //then
   }
