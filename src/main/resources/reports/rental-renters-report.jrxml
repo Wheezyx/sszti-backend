@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2019-12-02T19:01:22 -->
+<!-- 2019-12-04T10:14:35 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Simple_Blue" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Key" uuid="4a03189d-5eba-4096-aa11-f762893637aa">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
@@ -20,14 +20,14 @@
 			<staticText>
 				<reportElement x="5" y="49" width="550" height="42" uuid="47fc3f2b-d079-4bdc-befa-0fe6555bc700"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14"/>
+          <font size="14"/>
 				</textElement>
 				<text><![CDATA[Formularz przekazania sprzętu dla: ]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="252" y="50" width="303" height="41" uuid="a19079e4-fbe5-4288-b7a7-23e50a9a59e5"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14"/>
+          <font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{renter}.getFirstName() + "   " + $P{renter}.getLastName() + "   " + $P{renter}.getCode()]]></textFieldExpression>
 			</textField>

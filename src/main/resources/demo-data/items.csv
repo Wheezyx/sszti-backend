@@ -1,17 +1,17 @@
-id, place_of_posting, inside_type, equipment, inventory_code, item_type, generic_name_id, full_item_name, description, date_of_delivery, parent_id
-'fffa0207-abfe-4289-8f5e-5462d18cce43', 'TEST', 'NN', true, 'CODE1', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Computer1', 'Nice computer', '01-01-2019',null
-'11dae30a-e24a-4646-8700-0c03d9c62d86', 'TEST3', 'T', true, 'CODE2', 'SOFTWARE', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Office 1234', '', '01-01-2019',null
-'329c3b70-a21b-40ad-88dd-5467e57348b4', 'TEST4', 'M', true, 'CODE3', 'FURNITURE', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Krzeslo z oparciem', '', '01-01-2019',null
-'7d05511a-95ae-4487-86c1-f4ab597f1a93', 'TEST1', 'N', true, 'CODE4', 'OFFICE', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Dlugopis', '', '01-01-2019',null
-'5de489cf-dd4d-4451-97d9-93eeda2c08f1', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
-'5de489cf-dd4d-4451-97d9-93eeda2c08f0', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
-'5de489cf-dd4d-4451-97d9-93eeda2c08f2', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
-'5de489cf-dd4d-4451-97d9-93eeda2c08f3', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
-'5de489cf-dd4d-4451-97d9-93eeda2c08f4', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
-'5de489cf-dd4d-4451-97d9-93eeda2c08f5', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
-'5de489cf-dd4d-4451-97d9-93eeda2c08f6', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
-'5de489cf-dd4d-4451-97d9-93eeda2c08f7', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
-'5de489cf-dd4d-4451-97d9-93eeda2c08f8', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
-'5de489cf-dd4d-4451-97d9-93eeda2c08f9', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
-'5de489cf-dd4d-4451-97d9-93eeda2c0810', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
-'5de489cf-dd4d-4451-97d9-93eeda2c0551', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'fffa0207-abfe-4289-8f5e-5462d18cce4e', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
+id, place_of_posting, inside_type, equipment, inventory_code, item_type, generic_name, full_item_name, description, date_of_delivery, parent_id
+'fffa0207-abfe-4289-8f5e-5462d18cce43', 'TEST', 'NN', true, 'CODE1', 'EQUIPMENT', 'TEST', 'Computer1', 'Nice computer', '01-01-2019',null
+'11dae30a-e24a-4646-8700-0c03d9c62d86', 'TEST3', 'T', true, 'CODE2', 'SOFTWARE', 'TEST', 'Office 1234', '', '01-01-2019',null
+'329c3b70-a21b-40ad-88dd-5467e57348b4', 'TEST4', 'M', true, 'CODE3', 'FURNITURE', 'TEST', 'Krzeslo z oparciem', '', '01-01-2019',null
+'7d05511a-95ae-4487-86c1-f4ab597f1a93', 'TEST1', 'N', true, 'CODE4', 'OFFICE', 'TEST', 'Dlugopis', '', '01-01-2019',null
+'5de489cf-dd4d-4451-97d9-93eeda2c08f1', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'TEST', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
+'5de489cf-dd4d-4451-97d9-93eeda2c08f0', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'TEST', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
+'5de489cf-dd4d-4451-97d9-93eeda2c08f2', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'TEST', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
+'5de489cf-dd4d-4451-97d9-93eeda2c08f3', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'TEST', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
+'5de489cf-dd4d-4451-97d9-93eeda2c08f4', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'TEST', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
+'5de489cf-dd4d-4451-97d9-93eeda2c08f5', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'TEST', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
+'5de489cf-dd4d-4451-97d9-93eeda2c08f6', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'TEST', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
+'5de489cf-dd4d-4451-97d9-93eeda2c08f7', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'TEST', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
+'5de489cf-dd4d-4451-97d9-93eeda2c08f8', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'TEST', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
+'5de489cf-dd4d-4451-97d9-93eeda2c08f9', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'TEST', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
+'5de489cf-dd4d-4451-97d9-93eeda2c0810', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'TEST', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'
+'5de489cf-dd4d-4451-97d9-93eeda2c0551', 'TEST2', 'T', true, 'CODE5', 'EQUIPMENT', 'TEST', 'Myszka', '', '01-01-2019','fffa0207-abfe-4289-8f5e-5462d18cce43'

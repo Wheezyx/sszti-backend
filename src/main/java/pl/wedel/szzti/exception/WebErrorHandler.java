@@ -14,7 +14,7 @@ import pl.wedel.szzti.dto.ErrorMessage;
 
 @ControllerAdvice
 @Slf4j
-public class WebErrorHandling {
+public class WebErrorHandler {
 
   private static final Map<String, String> UNIQUE_CONSTRAINT_MAP = new HashMap<>();
 

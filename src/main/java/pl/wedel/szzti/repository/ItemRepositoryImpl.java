@@ -30,7 +30,6 @@ public class ItemRepositoryImpl implements SearchItemRepository {
     Root<Item> root = query.from(Item.class);
     root.fetch("rental", JoinType.LEFT);
     root.fetch("parent", JoinType.LEFT);
-    root.fetch("genericName", JoinType.LEFT);
     query.select(root);
 
     applyFilters(builder, root, query, searchParameters);
@@ -48,7 +47,6 @@ public class ItemRepositoryImpl implements SearchItemRepository {
     Root<Item> root = countQuery.from(Item.class);
     root.join("rental", JoinType.LEFT);
     root.join("parent", JoinType.LEFT);
-    root.join("genericName", JoinType.LEFT);
     countQuery.select(criteriaBuilder.count(root));
 
     applyFilters(criteriaBuilder, root, countQuery, searchParameters);

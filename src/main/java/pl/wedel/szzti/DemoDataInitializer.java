@@ -19,9 +19,6 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class DemoDataInitializer implements CommandLineRunner {
 
-  @Value(value = "classpath:demo-data/generic_names.csv")
-  private Resource genericNamesResource;
-
   @Value(value = "classpath:demo-data/items.csv")
   private Resource itemsResource;
 
@@ -43,6 +40,12 @@ public class DemoDataInitializer implements CommandLineRunner {
   @Value(value = "classpath:demo-data/user_authorities_assignment.csv")
   private Resource userAuthoritiesAssignmentResource;
 
+  @Value(value = "classpath:demo-data/hosts.csv")
+  private Resource hostsResource;
+
+  @Value(value = "classpath:demo-data/connection_interfaces.csv")
+  private Resource connectionInterfacesResource;
+
   private final JdbcTemplate jdbcTemplate;
 
   public DemoDataInitializer(JdbcTemplate jdbcTemplate) {
@@ -51,7 +54,6 @@ public class DemoDataInitializer implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    insertIntoDatabase("generic_names", genericNamesResource);
     insertIntoDatabase("items", itemsResource);
     insertIntoDatabase("places", placesResource);
     insertIntoDatabase("renters", rentersResource);
@@ -59,6 +61,8 @@ public class DemoDataInitializer implements CommandLineRunner {
     insertIntoDatabase("users", usersResource);
     insertIntoDatabase("authorities", userAuthoritiesResource);
     insertIntoDatabase("users_authorities", userAuthoritiesAssignmentResource);
+    insertIntoDatabase("hosts", hostsResource);
+    insertIntoDatabase("connection_interfaces", connectionInterfacesResource);
   }
 
   private void insertIntoDatabase(String column, Resource resource) throws IOException {

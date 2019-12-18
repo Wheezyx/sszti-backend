@@ -1,9 +1,7 @@
 package pl.wedel.szzti.mapper;
 
 import org.springframework.stereotype.Service;
-import pl.wedel.szzti.domain.InsideType;
 import pl.wedel.szzti.domain.Item;
-import pl.wedel.szzti.domain.ItemType;
 import pl.wedel.szzti.dto.ItemDto;
 
 @Service
@@ -15,13 +13,13 @@ public class ItemMapper {
     }
     ItemDto itemDto = ItemDto.builder()
         .placeOfPosting(item.getPlaceOfPosting())
-        .insideType(item.getInsideType() != null ? item.getInsideType().name() : null)
+        .insideType(item.getInsideType())
         .equipment(item.isEquipment())
         .inventoryCode(item.getInventoryCode())
-        .itemType(item.getItemType() != null ? item.getItemType().name() : null)
+        .itemType(item.getItemType())
         .fullItemName(item.getFullItemName())
         .description(item.getDescription())
-        .genericName(item.getGenericName() != null ? item.getGenericName().getName() : null)
+        .genericName(item.getGenericName())
         .dateOfDelivery(item.getDateOfDelivery())
         .rented(item.getRental() != null)
         .build();
@@ -33,13 +31,13 @@ public class ItemMapper {
   public Item fromDto(ItemDto itemDto) {
     Item item =  Item.builder()
         .placeOfPosting(itemDto.getPlaceOfPosting())
-        .insideType(InsideType.fromString(itemDto.getInsideType()))
+        .insideType(itemDto.getInsideType())
         .equipment(itemDto.isEquipment())
         .inventoryCode(itemDto.getInventoryCode())
-        .itemType(ItemType.fromString(itemDto.getItemType()))
+        .itemType(itemDto.getItemType())
         .fullItemName(itemDto.getFullItemName())
         .description(itemDto.getDescription())
-        //TODO ADD GENERIC NAME FINDING BY NAME AND ADDING HERE.
+        .genericName(itemDto.getGenericName())
         .dateOfDelivery(itemDto.getDateOfDelivery())
         .build();
     item.setId(itemDto.getId());

@@ -2,11 +2,7 @@ package pl.wedel.szzti.domain;
 
 import java.time.LocalDate;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -33,21 +29,15 @@ public class Item extends BaseEntity {
   //TODO Possible export to another table
   private String placeOfPosting;
 
-  @Column(nullable = false, columnDefinition = "text")
-  @Enumerated(value = EnumType.STRING)
-  private InsideType insideType;
+  private String insideType;
 
   private boolean equipment;
 
   private String inventoryCode;
 
-  @Column(nullable = false, columnDefinition = "text")
-  @Enumerated(value = EnumType.STRING)
-  private ItemType itemType;
+  private String itemType;
 
-  @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "generic_name_id")
-  private GenericName genericName;
+  private String genericName;
 
   private String fullItemName;
 
@@ -58,7 +48,7 @@ public class Item extends BaseEntity {
   @OneToOne(mappedBy = "item", cascade = CascadeType.REMOVE)
   private Rental rental;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "parent_id")
   private Item parent;
 }

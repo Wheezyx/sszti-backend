@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2019-12-01T22:34:30 -->
+<!-- 2019-12-04T10:22:12 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="damage_protocol" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0452874-5787-4ff0-95cd-4d673a1f49a5">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -20,33 +20,59 @@
 	<background>
 		<band height="20" splitType="Stretch"/>
 	</background>
+	<summary>
+		<band height="160" splitType="Stretch">
+			<staticText>
+				<reportElement height="79" uuid="b6f13fc0-f0ba-4e3e-92ee-9dc12bb9392b" width="180" x="0"
+					y="20"/>
+				<text><![CDATA[Zatwierdzam:
+..................................................
+                    ]]></text>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+			</staticText>
+			<staticText>
+				<reportElement height="80" uuid="c84380f0-e902-4848-ae2c-a7835f244fa2" width="280" x="280"
+					y="20"/>
+				<text><![CDATA[Podpisy komisji: ........................................
+		       ........................................
+                            ........................................]]></text>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+			</staticText>
+			<staticText>
+				<reportElement height="40" uuid="33e74b4f-647c-4e09-bdea-7eb066b7440c" width="560" x="-3"
+					y="100"/>
+				<text>
+					<![CDATA[Przekazano do naprawy zam. nr ....................................................... dnia ....................................]]></text>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+			</staticText>
+		</band>
+	</summary>
 	<title>
 		<band height="580" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="552" height="80" uuid="c8cb63ab-901b-41f1-9c68-8c40869d34f7"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="20" isBold="true" pdfFontName="Helvetica" pdfEncoding="Cp1250"/>
+					<font isBold="true" size="20"/>
 				</textElement>
 				<text><![CDATA[PROTOKÓŁ USZKODZENIA SPRZĘTU TECHNICZNEGO NR ..............]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="77" width="370" height="32" uuid="d89a7b36-ba99-47b9-8188-c905b2a456b1"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14" pdfEncoding="Cp1250"/>
+					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Sporządzony w Pracowni Informatyki ...............................]]></text>
 			</staticText>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="370" y="77" width="180" height="32" uuid="2ed22e2f-9e2b-4f3d-8561-951695d0e7f5"/>
-				<textElement>
-					<font fontName="Times New Roman" size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Dnia: " + $P{date}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="280" y="110" width="272" height="60" uuid="53c58269-6142-40c2-98d2-9733b165e2ed"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14" pdfEncoding="Cp1250"/>
+					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Przewodniczący: .....................
 
@@ -55,14 +81,14 @@ Członek:             .....................]]></text>
 			<staticText>
 				<reportElement x="0" y="110" width="280" height="60" uuid="c63873e4-305d-4ea1-beae-3d3965d19a01"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14" pdfEncoding="Cp1250"/>
+					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Przez komisję w składzie: ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="4" y="370" width="552" height="210" uuid="94db27d6-673d-4a41-be1a-59cc46daee87"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14" pdfEncoding="Cp1250"/>
+					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Rodzaj uszkodzenia:     .................................................................
 
@@ -77,95 +103,74 @@ Wnioski: przekazać do naprawy     .............................................
 			<staticText>
 				<reportElement x="0" y="170" width="552" height="30" uuid="891520a4-7f0b-4f49-9f3b-73e968700e8e"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14"/>
+					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Po dokonaniu przeglądu uszkodzonego sprzętu (maszyny, aparatu):]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="210" width="180" height="20" uuid="9d1cddd2-de90-409e-81bf-66540b266ca6"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Pełna nazwa:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="250" width="180" height="18" uuid="0de21aa4-0a34-44fd-ad2d-a9970416543b"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14"/>
+					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Typ:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="290" width="180" height="20" uuid="a00dd56c-75b3-4b10-98a4-35aa81bf0e78"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14"/>
+					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Numer inwentarzowy:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="330" width="180" height="20" uuid="72d74340-4107-44bd-ad2a-fdaba92ccf22"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14"/>
+					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Data otrzymania:]]></text>
 			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement height="32" uuid="2ed22e2f-9e2b-4f3d-8561-951695d0e7f5" width="180" x="370"
+					y="77"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dnia: " + $P{date}]]></textFieldExpression>
+			</textField>
 			<textField>
 				<reportElement x="190" y="210" width="366" height="20" uuid="b86276a7-c83b-465e-a618-d7a2ec1a34d9"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14"/>
+					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{item}.getFullItemName()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="189" y="250" width="367" height="20" uuid="84373d8e-1e21-4c63-a4b9-a6add7dab7ee"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14"/>
+					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{item}.getItemType()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="188" y="290" width="369" height="20" uuid="ee7d3aef-1606-4762-a20e-1dfdccb65e35"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14"/>
+					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{item}.getInventoryCode()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="188" y="330" width="369" height="20" uuid="518f16a4-9f26-4e20-ba9a-3cbec1288b82"/>
 				<textElement>
-					<font fontName="Times New Roman" size="14"/>
+					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{item}.getDateOfDelivery()]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
-	<summary>
-		<band height="160" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="20" width="180" height="79" uuid="b6f13fc0-f0ba-4e3e-92ee-9dc12bb9392b"/>
-				<textElement>
-					<font fontName="Times New Roman" size="14"/>
-				</textElement>
-				<text><![CDATA[Zatwierdzam:
-..................................................
-                    ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="280" y="20" width="280" height="80" uuid="c84380f0-e902-4848-ae2c-a7835f244fa2"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
-				<text><![CDATA[Podpisy komisji: ........................................
-		       ........................................
-                            ........................................]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="-3" y="100" width="560" height="40" uuid="33e74b4f-647c-4e09-bdea-7eb066b7440c"/>
-				<textElement>
-					<font fontName="Times New Roman" size="14"/>
-				</textElement>
-				<text><![CDATA[Przekazano do naprawy zam. nr ....................................................... dnia ....................................]]></text>
-			</staticText>
-		</band>
-	</summary>
 </jasperReport>

@@ -1,0 +1,6 @@
+id,ip,MAC,socket_number,vlan,patch_panel,connection_name,connection_number,host_id
+'7d52e87b-8f75-441c-b53c-d8f97cd12b12', '128.121.12.11', '12AAC', 'AKCCD',null,null,null,null,'7d52e87b-8f75-441c-b53c-d8f97cd12b25'
+'844988e3-6c60-45ff-83ab-553082699331', '128.121.12.13', '12AAC', 'AKCCD',null,null,null,null,'7d52e87b-8f75-441c-b53c-d8f97cd12b25'
+'f7b87e45-d368-4fb9-bfc9-f622cba3b154', '128.121.12.14', '12AAC', 'AKCCD',null,null,null,null,'844988e3-6c60-45ff-83ab-553082699523'
+'13347c29-7b35-4cb9-9fd5-361cd7ae3012', '128.121.12.15', '12AAC', 'AKCCD',null,null,null,null,'844988e3-6c60-45ff-83ab-553082699523'
+'391297ba-af9b-4c98-9a9a-42358ce3e155', '128.121.12.16', '13AAC', 'AKCCD',null,null,null,null,'391297ba-af9b-4c98-9a9a-42358ce3eadf'

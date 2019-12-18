@@ -13,13 +13,13 @@ public class ItemCsvMapper {
     }
     ItemCsvDto itemDto = ItemCsvDto.builder()
         .placeOfPosting(item.getPlaceOfPosting())
-        .insideType(item.getInsideType() != null ? item.getInsideType().name() : null)
+        .insideType(item.getInsideType())
         .equipment(item.isEquipment())
         .inventoryCode(item.getInventoryCode())
-        .itemType(item.getItemType() != null ? item.getItemType().name() : null)
+        .itemType(item.getItemType())
         .fullItemName(item.getFullItemName())
         .description(item.getDescription())
-        .genericName(item.getGenericName() != null ? item.getGenericName().getName() : null)
+        .genericName(item.getGenericName())
         .dateOfDelivery(item.getDateOfDelivery())
         .build();
     itemDto.setParentName(item.getParent() != null ? item.getParent().getFullItemName() : "");

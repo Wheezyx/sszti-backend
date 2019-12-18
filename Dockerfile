@@ -1,4 +1,4 @@
-FROM anapsix/alpine-java:jre8
+FROM openjdk:11.0.5-jre-stretch
 
 COPY build/libs/*.jar /szzti.jar
 

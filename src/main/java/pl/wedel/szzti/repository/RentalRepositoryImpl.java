@@ -34,7 +34,6 @@ public class RentalRepositoryImpl implements SearchRentalRepository {
     CriteriaQuery<Rental> query = builder.createQuery(Rental.class);
     Root<Rental> root = query.from(Rental.class);
     query.select(root);
-    root.fetch("item", JoinType.LEFT).fetch("genericName", JoinType.LEFT);
     root.fetch("item", JoinType.LEFT).fetch("parent", JoinType.LEFT);
     root.fetch("renter", JoinType.LEFT);
     root.fetch("place", JoinType.LEFT);
